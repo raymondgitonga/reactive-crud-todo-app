@@ -12,8 +12,6 @@ import io.reactivex.Observable;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-import java.util.Optional;
 
 public class TodoEndpoints extends Endpoints {
 
@@ -25,8 +23,6 @@ public class TodoEndpoints extends Endpoints {
                 .map(req -> (ToDoDto) getDataFromJsonBodyRequest(request, ToDoDto.class))
                 .flatMap(input -> toDoDao.create(input))
                 .subscribe(output -> toJsonResponse(request, response, new ResponseDto(200, output)));
-
-
 
     };
     @Api(path = "/api/v2/read/{id}", method = "POST",  produces = "application/json")
